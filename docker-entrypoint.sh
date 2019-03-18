@@ -10,7 +10,7 @@ if [[ "${WOOCOMMERCE_HIDDENSERVICE_HOSTNAME_FILE}" ]]; then
 	echo "Waiting $WOOCOMMERCE_HIDDENSERVICE_HOSTNAME_FILE to be created by tor..."
 	while [ ! -f "$WOOCOMMERCE_HIDDENSERVICE_HOSTNAME_FILE" ]; do sleep 1; done
 	HIDDENSERVICE_ONION="$(head -n 1 "$WOOCOMMERCE_HIDDENSERVICE_HOSTNAME_FILE")"
-	echo "ServerName $WOOCOMMERCE_HOST" >> /etc/apache2/conf-enabled/servername.conf
+	echo "ServerName $HIDDENSERVICE_ONION" >> /etc/apache2/conf-enabled/servername.conf
 fi
 
 # usage: file_env VAR [DEFAULT]
