@@ -3,7 +3,7 @@ jobs:
   # publish jobs require $DOCKERHUB_REPO, $DOCKERHUB_USER, $DOCKERHUB_PASS defined
   publish_docker_linuxamd64:
     machine:
-      docker_layer_caching: true
+      enabled: true
     steps:
       - checkout  
       - run:
