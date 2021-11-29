@@ -1,7 +1,7 @@
 FROM wordpress:5.5.3
 
 ENV WOOCOMMERCE_VERSION 3.5.5
-ENV BTCPAY_PLUGIN_VERSION 3.0.14
+ENV BTCPAY_PLUGIN_VERSION 3.0.15
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends unzip wget \
