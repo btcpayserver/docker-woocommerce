@@ -16,22 +16,17 @@ RUN apt-get update \
 
 # Install the gmp, mcrypt and soap extensions
 RUN apt-get update -y
-RUN apt-get install -y libgmp-dev libxml2-dev
-RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/local/include/
-RUN docker-php-ext-configure gmp
-RUN docker-php-ext-install gmp
+RUN apt-get install -y libxml2-dev
 RUN docker-php-ext-install soap
 
 # Download WordPress CLI
-RUN curl -L "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar" > /usr/bin/wp && \
-    chmod +x /usr/bin/wp
+RUN curl -L "https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar" > /usr/bin/wp && chmod +x /usr/bin/wp
 
 RUN { \
-		echo 'file_uploads = On'; \
-		echo 'post_max_size=100M'; \
-		echo 'upload_max_filesize=100M'; \
-	} > /usr/local/etc/php/conf.d/uploads.ini
-
+  echo 'file_uploads = On'; \
+  echo 'post_max_size=100M'; \
+  echo 'upload_max_filesize=100M'; \
+} > /usr/local/etc/php/conf.d/uploads.ini
 
 COPY docker-entrypoint.sh /usr/local/bin/
 VOLUME ["/var/www/html"]
